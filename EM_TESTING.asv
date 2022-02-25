@@ -1,0 +1,11 @@
+x = [mvnrnd([-5 -5],reshape([80 50],1,2).*eye(2),100); mvnrnd([-5 9],reshape([20 35],1,2).*eye(2),100);mvnrnd([8 -2],reshape([35 20],1,2).*eye(2),100)];
+x
+scatter(x(:,1),x(:,2))
+m=7;
+sigma_in=1.*100.*ones(1,m);
+softmaxScale= 4;
+maxUsersPerCluster=100;
+maxIter=100;
+sinr_threshold=2;
+[ efficiencyScore,allocationScore,reliabilityScore, maxSINR, numberOfServedUsers,iter, mu] = EM_PULL_CNST_SIGMA_time...
+                                                                (x,m,sigma_in,softmaxScale,maxUsersPerCluster,maxIter,sinr_threshold);
